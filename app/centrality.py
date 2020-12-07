@@ -1,4 +1,5 @@
-from app.load_map import CorpusLoader
+from .load_map import CorpusLoader
+from . import app
 import json
 import requests
 from datetime import datetime
