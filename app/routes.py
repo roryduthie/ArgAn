@@ -19,3 +19,16 @@ def index():
 @app.route('/form')
 def my_form():
     return render_template('index.html')
+
+@app.route('/form', methods=['POST'])
+def my_form_post():
+    #iat_mode = 'false'
+    #text = request.form['text']
+    #iat_mode = request.form['iat_mode']
+    #session['text_var'] = text
+    #session['iat_mode'] = iat_mode
+    return redirect('/results')
+
+@app.route('/results')
+def render_text():
+    return render_template('an-home.html')
