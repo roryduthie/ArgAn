@@ -23,12 +23,44 @@ def my_form():
 @app.route('/form', methods=['POST'])
 def my_form_post():
     #iat_mode = 'false'
-    #text = request.form['text']
+    text = request.form['text']
     #iat_mode = request.form['iat_mode']
-    #session['text_var'] = text
+    session['text_var'] = text
     #session['iat_mode'] = iat_mode
     return redirect('/results')
 
 @app.route('/results')
 def render_text():
-    return render_template('an-home.html')
+    text = session.get('text_var', None)
+    check = check_analytics(text)
+
+    html = get_centrality_vis(text)
+    jsn = get_centrality_vis_cloud(text)
+
+    #At this point also pull the raw data so we can easily toggle
+
+    return render_template('an-home.html', div_placeholder=Markup(html), cloud_jsn=jsn)
+
+def check_analytics(ID):
+    return ''
+
+def get_centrality_vis(ID):
+
+    url = 'http://arganbackend.arg.tech/eigen-cent-vis/'
+
+    url = url + str(ID)
+
+    with urllib.request.urlopen(url) as response:
+        html = response.read()
+        html = html.decode('utf-8')
+    return html
+
+def get_centrality_vis_cloud(ID):
+    url = 'http://arganbackend.arg.tech/eigen-cent-cloud-vis/'
+
+    url = url + str(ID)
+
+    with urllib.request.urlopen(url) as response:
+        jsn = json.load(response)
+    return jsn
+
