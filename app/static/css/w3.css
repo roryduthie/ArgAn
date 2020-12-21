@@ -439,7 +439,7 @@ a{
     display:table;
     clear:both
 }
- .w3-col,.w3-half,.w3-third,.w3-twothird,.w3-threequarter,.w3-quarter{
+ .w3-col,.w3-half,.w3-third,.w3-twothird,.w3-threethird,.w3-threequarter,.w3-quarter{
     float:left;
     width:100%
 }
@@ -514,6 +514,9 @@ a{
         width:91.66666%
     }
     .w3-col.m12{
+        width:99.99999%
+    }
+    .w3-col.m3,.w3-threethird{
         width:99.99999%
     }
 }
@@ -753,7 +756,7 @@ a{
 .w3-round-xxlarge{
     border-radius:32px
 }
- .w3-row-padding,.w3-row-padding>.w3-half,.w3-row-padding>.w3-third,.w3-row-padding>.w3-twothird,.w3-row-padding>.w3-threequarter,.w3-row-padding>.w3-quarter,.w3-row-padding>.w3-col{
+ .w3-row-padding,.w3-row-padding>.w3-half,.w3-row-padding>.w3-third,.w3-row-padding>.w3-twothird,.w3-threethird,.w3-row-padding>.w3-threequarter,.w3-row-padding>.w3-quarter,.w3-row-padding>.w3-col{
     padding:0 8px
 }
  .w3-container,.w3-panel{
@@ -1108,6 +1111,10 @@ a{
  .w3-orange,.w3-hover-orange:hover{
     color:#000!important;
     background-color:#ff9800!important
+}
+ .w3-darkslate,.w3-hover-darkslate:hover{
+    color:#000!important;
+    background-color:#483d8b!important
 }
  .w3-deep-orange,.w3-hover-deep-orange:hover{
     color:#fff!important;
