@@ -27,9 +27,16 @@ def my_form_post():
     #iat_mode = request.form['iat_mode']
     session['text_var'] = text
     #session['iat_mode'] = iat_mode
-    return redirect('/results')
+    return redirect('/results/overview')
 
-@app.route('/results')
+@app.route('/results/hyp')
+def event_hyp_results():
+    #iat_mode = 'false'
+
+    #session['iat_mode'] = iat_mode
+    return render_template('event.html')
+
+@app.route('/results/overview')
 def render_text():
     text = session.get('text_var', None)
     check = check_analytics(text)
