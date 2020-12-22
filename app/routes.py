@@ -31,10 +31,12 @@ def my_form_post():
 
 @app.route('/results/hyp')
 def event_hyp_results():
-    #iat_mode = 'false'
 
-    #session['iat_mode'] = iat_mode
-    return render_template('event.html')
+    text = session.get('text_var', None)
+    check = check_analytics(text)
+
+    hevy_div = get_hyp_evidence_vis(text)
+    return render_template('event.html', hevy_placeholder = Markup(hevy_div))
 
 @app.route('/results/overview')
 def render_text():
@@ -200,6 +202,17 @@ def get_appeal_vis(ID):
 def get_popularity_vis(ID):
 
     url = 'http://arganbackend.arg.tech/popularity-vis/'
+
+    url = url + str(ID)
+
+    with urllib.request.urlopen(url) as response:
+        html = response.read()
+        html = html.decode('utf-8')
+    return html
+
+def get_hyp_evidence_vis(ID):
+
+    url = 'http://arganbackend.arg.tech/hevy-hyp-evidence-vis/'
 
     url = url + str(ID)
 
