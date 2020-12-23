@@ -103,11 +103,11 @@ def get_stats(json_array):
 
     for stat in json_array:
         if stat['type'] == 'RA':
-            RA_count = stat['count']
+            RA_count += stat['count']
         if stat['type'] == 'CA':
-            CA_count = stat['count']
+            CA_count += stat['count']
         if stat['type'] == 'MA':
-            MA_count = stat['count']
+            MA_count += stat['count']
 
         if stat['type'] == 'I-node':
             prop_count = stat['count']
