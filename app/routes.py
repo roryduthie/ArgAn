@@ -29,6 +29,23 @@ def my_form_post():
     #session['iat_mode'] = iat_mode
     return redirect('/results/overview')
 
+@app.route('/results/participant')
+def participant_results():
+
+    text = session.get('text_var', None)
+    check = check_analytics(text)
+
+    raw_cog = get_pcogency_raw(text)
+    parts = len(raw_cog)
+
+    cog_div = get_pcogency_vis(text)
+    corr_div = get_pcorrectness_vis(text)
+    coh_div = get_pcoherence_vis(text)
+    inter_div = get_interaction_vis(text)
+
+
+    return render_template('participant.html', parts = parts, cog_placeholder = Markup(cog_div), corr_placeholder = Markup(corr_div), coh_placeholder = Markup(coh_div), inter_placeholder = Markup(inter_div))
+
 @app.route('/results/hyp')
 def event_hyp_results():
 
@@ -36,7 +53,19 @@ def event_hyp_results():
     check = check_analytics(text)
 
     hevy_div = get_hyp_evidence_vis(text)
-    return render_template('event.html', hevy_placeholder = Markup(hevy_div))
+    agent_div = get_hyp_agent_vis(text)
+    object_div = get_hyp_object_vis(text)
+    event_div = get_event_vis(text)
+    location_div = get_event_location_vis(text)
+
+    raw_stats = get_raw_stats(text)
+    hyp_count = get_hyps(raw_stats)
+
+    raw_events = get_raw_events(text)
+    events = len(raw_events)
+
+
+    return render_template('event.html', hevy_placeholder = Markup(hevy_div), agent_placeholder = Markup(agent_div), object_placeholder = Markup(object_div), hyps = hyp_count, events = events, event_placeholder = Markup(event_div), location_placeholder = Markup(location_div))
 
 @app.route('/results/overview')
 def render_text():
@@ -85,6 +114,15 @@ def get_stats(json_array):
         if stat['type'] == 'Locution':
             loc_count = stat['count']
     return prop_count, loc_count, RA_count, CA_count, MA_count
+
+def get_hyps(json_array):
+    hyp_count = 0
+
+
+    for stat in json_array:
+        if stat['type'] == 'YA' and stat['text'] == 'Hypothesising':
+            hyp_count = stat['count']
+    return hyp_count
 
 def check_analytics(ID):
     return ''
@@ -168,6 +206,17 @@ def get_raw_stats(ID):
         jsn = json.load(response)
     return jsn
 
+def get_raw_events(ID):
+    url = 'http://arganbackend.arg.tech/hevy-event-raw/'
+
+    url = url + str(ID)
+
+    with urllib.request.urlopen(url) as response:
+        jsn = json.load(response)
+    return jsn
+
+
+
 def get_div_vis(ID):
 
     url = 'http://arganbackend.arg.tech/divisiveness-vis/'
@@ -220,5 +269,110 @@ def get_hyp_evidence_vis(ID):
         html = response.read()
         html = html.decode('utf-8')
     return html
+
+def get_hyp_agent_vis(ID):
+
+    url = 'http://arganbackend.arg.tech/actor-vis/'
+
+    url = url + str(ID)
+
+    with urllib.request.urlopen(url) as response:
+        html = response.read()
+        html = html.decode('utf-8')
+    return html
+
+def get_hyp_object_vis(ID):
+
+    url = 'http://arganbackend.arg.tech/object-vis/'
+
+    url = url + str(ID)
+
+    with urllib.request.urlopen(url) as response:
+        html = response.read()
+        html = html.decode('utf-8')
+    return html
+
+def get_event_vis(ID):
+
+    url = 'http://arganbackend.arg.tech/hevy-event-vis/'
+
+    url = url + str(ID)
+
+    with urllib.request.urlopen(url) as response:
+        html = response.read()
+        html = html.decode('utf-8')
+    return html
+
+def get_event_location_vis(ID):
+
+    url = 'http://arganbackend.arg.tech/event-location-vis/'
+
+    url = url + str(ID)
+
+    with urllib.request.urlopen(url) as response:
+        html = response.read()
+        html = html.decode('utf-8')
+    return html
+
+def get_pcogency_raw(ID):
+
+    url = 'http://arganbackend.arg.tech/pcogency-raw/'
+
+    url = url + str(ID)
+
+    with urllib.request.urlopen(url) as response:
+        jsn = json.load(response)
+    return jsn
+
+def get_pcogency_vis(ID):
+
+    url = 'http://arganbackend.arg.tech/pcogency-vis/'
+
+    url = url + str(ID)
+
+    with urllib.request.urlopen(url) as response:
+        html = response.read()
+        html = html.decode('utf-8')
+    return html
+
+
+def get_pcorrectness_vis(ID):
+
+    url = 'http://arganbackend.arg.tech/pcorrectness-vis/'
+
+    url = url + str(ID)
+
+    with urllib.request.urlopen(url) as response:
+        html = response.read()
+        html = html.decode('utf-8')
+    return html
+
+
+def get_pcoherence_vis(ID):
+
+    url = 'http://arganbackend.arg.tech/pcoherence-vis/'
+
+    url = url + str(ID)
+
+    with urllib.request.urlopen(url) as response:
+        html = response.read()
+        html = html.decode('utf-8')
+    return html
+
+
+def get_interaction_vis(ID):
+
+    url = 'http://arganbackend.arg.tech/interaction-vis/'
+
+    url = url + str(ID)
+
+    with urllib.request.urlopen(url) as response:
+        html = response.read()
+        html = html.decode('utf-8')
+    return html
+
+
+
+
 
 

@@ -25,9 +25,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </div>
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-    <a href="overview" class="w3-bar-item w3-button w3-padding "><i class="fa fa-users fa-fw"></i>  Overview</a>
+    <a href="overview" class="w3-bar-item w3-button w3-padding "><i class="fa fa-tachometer"></i>  Overview</a>
     <a href="hyp" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-eye fa-fw"></i>Hypothesis and Event Analytics</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i>People Analytics</a>
+    <a href="participant" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i>Participant Analytics</a>
 
   </div>
 </nav>
@@ -42,7 +42,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
       <div class="w3-twothird">
-          <div class="w3-left"><h5><b><i class="fa fa-dashboard"></i> Analytics Home</b></h5></div>
+          <div class="w3-left"><h5><b><i class="fa fa-dashboard"></i> Hypothesis and Event Analytics</b></h5></div>
       </div>
       <div class="w3-third">
           <div class="w3-right w3-padding-16">
@@ -59,22 +59,22 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
 
   <div class="w3-row-padding w3-margin-bottom">
-    <div class="w3-third">
+    <div class="w3-half">
       <div class="w3-container w3-red w3-padding-16">
         <div class="w3-left"><i class="fa fa-lightbulb-o w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h4 >Propositions {{props}}</h4>
+          <h4 >Hypotheses {{hyps}}</h4>
           <h4 style="visibility: hidden;">L</h4>
           <h4 style="visibility: hidden;">L</h4>
         </div>
 
       </div>
     </div>
-    <div class="w3-third">
+    <div class="w3-half">
       <div class="w3-container w3-blue w3-padding-16">
-        <div class="w3-left"><i class="fa fa-comment-o w3-xxxlarge"></i></div>
+        <div class="w3-left"><i class="fa fa-calendar-o w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h4>Locutions {{locs}}</h4>
+          <h4>Events {{events}}</h4>
           <h4 style="visibility: hidden;">L</h4>
           <h4 style="visibility: hidden;">L</h4>
         </div>
@@ -82,30 +82,46 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
       </div>
     </div>
-    <div class="w3-third">
-      <div class="w3-container w3-teal w3-padding-16">
-        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
-
-        <div class="w3-right">
-            <h4>RAs {{ras}}</h4>
-            <h4>CAs {{cas}}</h4>
-            <h4>MAs {{mas}}</h4>
-
-        </div>
-        <div class="w3-clear"></div>
 
 
 
-      </div>
-    </div>
+
 
 
   </div>
-    <div class="w3-threethird" style="height:5000;">
+    <div class="w3-threethird">
 
       <h5>Hypotheses and Evidence</h5>
 
      {{ hevy_placeholder|safe }}
+
+  </div>
+
+    <div class="w3-row-padding w3-margin-bottom">
+      <h5>Agents and Objects</h5>
+    <div class="w3-third">
+     <h6>Agents</h6>
+     {{ agent_placeholder|safe }}
+    </div>
+    <div class="w3-third">
+     <h6>Objects</h6>
+     {{ object_placeholder|safe }}
+    </div>
+    </div>
+
+    <div class="w3-threethird">
+
+      <h5>Events</h5>
+
+     {{ event_placeholder|safe }}
+
+  </div>
+
+    <div class="w3-threethird">
+
+      <h5>Locations</h5>
+
+     {{ location_placeholder|safe }}
 
   </div>
 

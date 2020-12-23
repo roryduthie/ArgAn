@@ -25,9 +25,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </div>
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-    <a href="overview" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-tachometer"></i>  Overview</a>
-    <a href="hyp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>Hypothesis and Event Analytics</a>
-    <a href="participant" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i>Participant Analytics</a>
+    <a href="overview" class="w3-bar-item w3-button w3-padding "><i class="fa fa-tachometer"></i>  Overview</a>
+    <a href="hyp" class="w3-bar-item w3-button w3-padding "><i class="fa fa-eye fa-fw"></i>Hypothesis and Event Analytics</a>
+    <a href="participant" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-user fa-fw"></i>Participant Analytics</a>
 
   </div>
 </nav>
@@ -42,7 +42,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
       <div class="w3-twothird">
-          <div class="w3-left"><h5><b><i class="fa fa-dashboard"></i> Analytics Home</b></h5></div>
+          <div class="w3-left"><h5><b><i class="fa fa-dashboard"></i> Participant Analytics</b></h5></div>
       </div>
       <div class="w3-third">
           <div class="w3-right w3-padding-16">
@@ -59,117 +59,54 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
 
   <div class="w3-row-padding w3-margin-bottom">
-    <div class="w3-third">
+    <div class="w3-threethird">
       <div class="w3-container w3-red w3-padding-16">
-        <div class="w3-left"><i class="fa fa-lightbulb-o w3-xxxlarge"></i></div>
+        <div class="w3-left"><i class="fa fa-users fa-fw w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h4 >Propositions {{props}}</h4>
+          <h4 >Participants {{parts}}</h4>
           <h4 style="visibility: hidden;">L</h4>
           <h4 style="visibility: hidden;">L</h4>
         </div>
 
       </div>
     </div>
-    <div class="w3-third">
-      <div class="w3-container w3-blue w3-padding-16">
-        <div class="w3-left"><i class="fa fa-comment-o w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h4>Locutions {{locs}}</h4>
-          <h4 style="visibility: hidden;">L</h4>
-          <h4 style="visibility: hidden;">L</h4>
-        </div>
 
 
-      </div>
-    </div>
-    <div class="w3-third">
-      <div class="w3-container w3-teal w3-padding-16">
-        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+    <div class="w3-threethird">
 
-        <div class="w3-right">
-            <h4>RAs {{ras}}</h4>
-            <h4>CAs {{cas}}</h4>
-            <h4>MAs {{mas}}</h4>
+      <h5>Interactions</h5>
 
-        </div>
-        <div class="w3-clear"></div>
-
-
-
-      </div>
-    </div>
-
+     {{ inter_placeholder|safe }}
 
   </div>
 
-  <div class="w3-row-padding w3-margin-bottom">
-      <h5>Statistics</h5>
+      <div class="w3-row-padding w3-margin-bottom">
+      <h5>Cogency</h5>
     <div class="w3-third">
      <h6></h6>
-     {{ stats_placeholder|safe }}
+     {{ cog_placeholder|safe }}
     </div>
-      <div class="w3-third">
+  </div>
+
+      <div class="w3-row-padding w3-margin-bottom">
+      <h5>Correctness</h5>
+    <div class="w3-third">
      <h6></h6>
-     {{ s_time_placeholder|safe }}
+     {{ corr_placeholder|safe }}
     </div>
   </div>
 
-    <div class="w3-row-padding w3-margin-bottom">
-
-  </div>
-
-  <div class="w3-row-padding w3-margin-bottom">
-      <h5>Centrality Visualisation</h5>
+      <div class="w3-row-padding w3-margin-bottom">
+      <h5>Coherence</h5>
     <div class="w3-third">
-     <h6>Propositon Centrality - Top 10 Nodes</h6>
-     {{ div_placeholder|safe }}
-    </div>
-    <div class="w3-third">
-     <h6>Centrality Word Cloud - Top 20 Nodes</h6>
-     <img src="data:image/png;base64, {{ cloud_jsn }}">
+     <h6></h6>
+     {{ coh_placeholder|safe }}
     </div>
   </div>
 
 
-    <div class="w3-row-padding w3-margin-bottom">
-      <h5>Node Properties</h5>
-    <div class="w3-third">
-     <h6>Cogency</h6>
-     {{ cogency_placeholder|safe }}
-    </div>
-    <div class="w3-third">
-     <h6>Correctness</h6>
-     {{ correctness_placeholder|safe }}
-    </div>
-    <div class="w3-third">
-     <h6>Coherence</h6>
-     {{ coherence_placeholder|safe }}
-    </div>
-  </div>
 
-    <div class="w3-row-padding w3-margin-bottom">
-      <h5>Divisiveness</h5>
-    <div class="w3-third">
-     <h6>Divisiveness - Top 10 Nodes</h6>
-     {{ divis_placeholder|safe }}
-    </div>
-    <div class="w3-third">
-     <h6>Divisiveness Word Cloud - Top 20 Nodes</h6>
-     <img src="data:image/png;base64, {{ cloud_div }}">
-    </div>
-  </div>
 
-    <div class="w3-row-padding w3-margin-bottom">
-      <h5>Popularity and Appeal</h5>
-    <div class="w3-third">
-     <h6>Popularity</h6>
-     {{ popularity_placeholder|safe }}
-    </div>
-    <div class="w3-third">
-     <h6>Appeal</h6>
-     {{ appeal_placeholder|safe }}
-    </div>
-  </div>
 
 
 
