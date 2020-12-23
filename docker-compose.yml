@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+ argnav:
+  container_name: argan
+  build: .
+  ports:
+  - "8500:8500"
